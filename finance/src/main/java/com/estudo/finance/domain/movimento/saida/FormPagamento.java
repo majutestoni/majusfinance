@@ -1,10 +1,11 @@
 package com.estudo.finance.domain.movimento.saida;
 
-public enum TipoMeioSaida {
+public enum FormPagamento {
 
     DINHEIRO,
     CREDITO,
     DEBITO,
     PIX,
     BOLETO;
+
 }

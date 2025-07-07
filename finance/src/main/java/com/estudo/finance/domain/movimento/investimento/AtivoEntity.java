@@ -7,5 +7,6 @@ import jakarta.persistence.Entity;
 public class AtivoEntity extends Serializers.Base {
 
     private String codigo;
+    private String nome;
     private TipoAtivo tipo;
 }

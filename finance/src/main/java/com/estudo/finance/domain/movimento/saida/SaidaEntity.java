@@ -6,6 +6,6 @@ import jakarta.persistence.Entity;
 @Entity
 public class SaidaEntity extends DinheiroMovimentoEntity {
 
-    private TipoMeioSaida tipoMeioSaida;
+    private FormPagamento tipoMeioSaida;
 
 }
