@@ -14,10 +14,12 @@ import lombok.Setter;
 public class CategoriaMovimentoEntity extends BaseEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cd_categoria_movimento", unique = true)
+    @Column(name = "cd_categoria_movimento", nullable = false, unique = true)
     private Long codigo;
+
     @Column(name = "ds_categoria_movimento", nullable = false)
     private String denominacao;
+
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "ds_categoria_movimento", nullable = false)
     private TipoMovimento tipo;

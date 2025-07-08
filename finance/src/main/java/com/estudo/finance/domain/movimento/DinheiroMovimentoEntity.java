@@ -28,7 +28,7 @@ public abstract class DinheiroMovimentoEntity extends BaseEntity {
     private SubCategoriaMovimentoEntity categoria;
 
     @ManyToOne
-    @JoinColumn(name = "conta_id_conta")
+    @JoinColumn(name = "conta_id_conta", nullable = false)
     private ContaEntity conta;
 
 }

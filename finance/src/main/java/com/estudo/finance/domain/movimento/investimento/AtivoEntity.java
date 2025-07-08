@@ -16,8 +16,10 @@ public class AtivoEntity extends BaseEntity {
 
     @Column(name = "ds_codigo", nullable = false, unique = true)
     private String codigo;
+
     @Column(name = "ds_nome", nullable = false)
     private String nome;
+
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "tp_ativo", nullable = false)
     private TipoAtivo tipo;
