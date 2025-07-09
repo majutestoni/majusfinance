@@ -1,5 +1,6 @@
 package com.estudo.finance.domain.movimento;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.estudo.finance.domain.BaseEntity;
@@ -16,10 +17,12 @@ import lombok.Setter;
 @Setter
 public abstract class DinheiroMovimentoEntity extends BaseEntity {
 
-    @Column(name = "nr_valor", nullable = false)
-    private double valor;
+    @Column(name = "nr_valor", nullable = false, precision = 19, scale = 2)
+    private BigDecimal valor;
+
     @Column(name = "dt_movimento", nullable = false)
     private LocalDateTime data;
+
     @Column(name = "ds_descricao")
     private String descricao;
 

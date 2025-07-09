@@ -6,7 +6,8 @@ import com.estudo.finance.domain.movimento.entrada.EntradaEntity;
 import com.estudo.finance.repositories.movimento.DinheiroMovimentoRepository;
 
 /**
+ *
  */
 @Repository
-public interface EntradaRepository extends DinheiroMovimentoRepository<EntradaEntity> {
+public interface EntradaRepository extends DinheiroMovimentoRepository<EntradaEntity> {q
 }

@@ -1,5 +1,6 @@
 package com.estudo.finance.services.movimento.entrada;
 
+import com.estudo.finance.dtos.movimento.entrada.EntradaDTO;
 import com.estudo.finance.services.movimento.DinheiroMovimentoService;
 
 /**
@@ -8,4 +9,7 @@ import com.estudo.finance.services.movimento.DinheiroMovimentoService;
  * @author Majú Testoni
  */
 public interface EntradaService extends DinheiroMovimentoService {
+
+
+	void deposito(EntradaDTO dto);
 }
