@@ -9,6 +9,12 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 
+
+/**
+ * Representa um ativo, ex: salário, ações, etc.
+ *
+ */
+
 @Entity
 @Table(name = "ativos")
 @AttributeOverride(name = "id", column = @Column(name = "id_ativo"))

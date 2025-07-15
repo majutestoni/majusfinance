@@ -13,9 +13,15 @@ import lombok.Setter;
 @Entity
 @Table(name = "entradas")
 @AttributeOverride(name = "id", column = @Column(name = "id_entrada"))
-@Getter
-@Setter
 public class EntradaEntity extends DinheiroMovimentoEntity {
 
     private AtivoEntity ativo;
+
+    public AtivoEntity getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(AtivoEntity ativo) {
+        this.ativo = ativo;
+    }
 }
