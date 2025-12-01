@@ -37,6 +37,7 @@ public class EntradaServiceImpl
 
 		entity = entradaRepository.save(entity);
         modificaSaldo(entity);
+
 		return entity;
 	}
 
@@ -59,14 +60,12 @@ public class EntradaServiceImpl
         entity.setConta(conta);
     }
 
-    protected BigDecimal modificaSaldo(EntradaEntity entradaEntity) {
+    private void modificaSaldo(EntradaEntity entradaEntity) {
         ContaEntity contaEntity = entradaEntity.getConta();
 
-        var saldoAtual = contaEntity.getSaldo() + entradaEntity.getValor();
+        BigDecimal saldoAtual = contaEntity.getSaldo().add(entradaEntity.getValor());
         contaEntity.setSaldo(saldoAtual);
 
         contaRepository.save(contaEntity);
-
-        return saldoAtuals;
     }
 }
