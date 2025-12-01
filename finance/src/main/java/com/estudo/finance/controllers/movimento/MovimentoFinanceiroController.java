@@ -13,7 +13,7 @@ import jakarta.validation.Valid;
 
 /**
  */
-@RestController("/movimento")
+@RestController(value = "/movimento")
 public class MovimentoFinanceiroController {
 
 	private final EntradaService entradaService;

@@ -9,5 +9,5 @@ import com.estudo.finance.repositories.movimento.DinheiroMovimentoRepository;
  *
  */
 @Repository
-public interface EntradaRepository extends DinheiroMovimentoRepository<EntradaEntity> {q
+public interface EntradaRepository extends DinheiroMovimentoRepository<EntradaEntity> {
 }

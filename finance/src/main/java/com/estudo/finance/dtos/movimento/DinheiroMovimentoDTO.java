@@ -23,10 +23,6 @@ public abstract class DinheiroMovimentoDTO {
 
 	private Long idConta;
 
-	private Long numeroConta;
-
-	private Long codigoBanco;
-
 	private Long codigoCategoria;
 
 	private Long codigoSubCategoria;
@@ -61,21 +57,5 @@ public abstract class DinheiroMovimentoDTO {
 
 	public void setIdConta(Long idConta) {
 		this.idConta = idConta;
-	}
-
-	public Long getNumeroConta() {
-		return numeroConta;
-	}
-
-	public void setNumeroConta(Long numeroConta) {
-		this.numeroConta = numeroConta;
-	}
-
-	public Long getCodigoBanco() {
-		return codigoBanco;
-	}
-
-	public void setCodigoBanco(Long codigoBanco) {
-		this.codigoBanco = codigoBanco;
 	}
 }

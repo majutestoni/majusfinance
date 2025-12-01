@@ -1,19 +1,15 @@
 package com.estudo.finance.services.movimento.entrada;
 
-import java.time.LocalDateTime;
-
-import org.springframework.stereotype.Service;
-
-import com.estudo.finance.configuration.exceptions.RequisicaoInvalidaException;
+import com.estudo.finance.domain.conta.ContaEntity;
 import com.estudo.finance.domain.movimento.entrada.EntradaEntity;
-import com.estudo.finance.domain.movimento.investimento.AtivoEntity;
 import com.estudo.finance.dtos.movimento.entrada.EntradaDTO;
-import com.estudo.finance.repositories.categoria.CategoriaRepository;
-import com.estudo.finance.repositories.categoria.SubCategoriaRepository;
-import com.estudo.finance.repositories.conta.ContaRepository;
 import com.estudo.finance.repositories.movimento.entrada.EntradaRepository;
 import com.estudo.finance.repositories.movimento.investimento.AtivoRepository;
 import com.estudo.finance.services.movimento.DinheiroMovimentoServiceImpl;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 /**
  * Implementação de {@link  EntradaService}
@@ -21,19 +17,13 @@ import com.estudo.finance.services.movimento.DinheiroMovimentoServiceImpl;
  * @author Majú Testoni
  */
 @Service
+@RequiredArgsConstructor
 public class EntradaServiceImpl
-		extends DinheiroMovimentoServiceImpl<EntradaDTO>
+		extends DinheiroMovimentoServiceImpl
 		implements EntradaService {
 
 	private AtivoRepository ativoRepository;
 	private EntradaRepository entradaRepository;
-
-	public EntradaServiceImpl(ContaRepository contaRepository, AtivoRepository ativoRepository, EntradaRepository entradaRepository,
-	                          CategoriaRepository categoriaRepository, SubCategoriaRepository subCategoriaRepository) {
-		super(contaRepository, categoriaRepository, subCategoriaRepository);
-		this.ativoRepository = ativoRepository;
-		this.entradaRepository = entradaRepository;
-	}
 
 	@Override
 	public EntradaEntity deposito(EntradaDTO dto) {
@@ -41,31 +31,42 @@ public class EntradaServiceImpl
 	}
 
 	private EntradaEntity getEntity(EntradaDTO dto) {
-		EntradaEntity entity = new EntradaEntity();
+		EntradaEntity entity = dto.toEntity();
 
-		entity.setData(dto.getData() != null ? dto.getData() : LocalDateTime.now());
-		entity.setValor(dto.getValor());
-		entity.setDescricao(dto.getDescricao());
-
-
-		entity.setAtivo(getAtivoByCodigo(dto.getCodigoAtivo()));
-		entity.setConta(getConta(dto));
+        setDadosById(entity, dto);
 
 		entity = entradaRepository.save(entity);
+        modificaSaldo(entity);
 		return entity;
 	}
 
-	private AtivoEntity getAtivoByCodigo(String codigoAtivo) {
-		if (codigoAtivo == null || codigoAtivo.isBlank()) {
-			throw new RequisicaoInvalidaException("Deve ser informado um código de ativo.");
-		}
+    private void setDadosById(EntradaEntity entity, EntradaDTO dto) {
+        var ativo = ativoRepository.findById(dto.idAtivo())
+                .orElseThrow(() -> new IllegalArgumentException("Ativo não encontrado"));
 
-		AtivoEntity ativo = ativoRepository.findByCodigo(codigoAtivo);
+        var categoria = categoriaRepository.findById(dto.idAtivo())
+                .orElseThrow(() -> new IllegalArgumentException("categoria não encontrado"));
 
-		if (ativo == null) {
-			throw new RequisicaoInvalidaException("Ativo com o código: " + codigoAtivo + " não foi encontrado!");
-		}
+        var subCategoria = subCategoriaRepository.findById(dto.idAtivo())
+                .orElseThrow(() -> new IllegalArgumentException("subCategoria não encontrado"));
 
-		return ativo;
-	}
+        var conta = contaRepository.findById(dto.idAtivo())
+                .orElseThrow(() -> new IllegalArgumentException("conta não encontrado"));
+
+        entity.setAtivo(ativo);
+        entity.setCategoria(subCategoria);
+        entity.setCategoriaMovimento(categoria);
+        entity.setConta(conta);
+    }
+
+    protected BigDecimal modificaSaldo(EntradaEntity entradaEntity) {
+        ContaEntity contaEntity = entradaEntity.getConta();
+
+        var saldoAtual = contaEntity.getSaldo() + entradaEntity.getValor();
+        contaEntity.setSaldo(saldoAtual);
+
+        contaRepository.save(contaEntity);
+
+        return saldoAtuals;
+    }
 }
