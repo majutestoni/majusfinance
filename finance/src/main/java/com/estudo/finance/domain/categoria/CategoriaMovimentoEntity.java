@@ -1,20 +1,21 @@
 package com.estudo.finance.domain.categoria;
 
 import com.estudo.finance.domain.BaseEntity;
+import com.estudo.finance.domain.usuario.UsuarioEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "categoria_movimento")
 @Getter
 @Setter
-@NoArgsConstructor
 public class CategoriaMovimentoEntity extends BaseEntity {
 
     @Column(name = "cd_categoria_movimento", nullable = false, unique = true, insertable = false,
@@ -27,4 +28,8 @@ public class CategoriaMovimentoEntity extends BaseEntity {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "tp_movimento", nullable = false)
     private TipoMovimento tipo;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
+    private UsuarioEntity usuario;
 }

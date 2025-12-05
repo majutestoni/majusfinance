@@ -3,6 +3,7 @@ package com.estudo.finance.domain.conta;
 import com.estudo.finance.domain.BaseEntity;
 import com.estudo.finance.domain.banco.BancoEntity;
 
+import com.estudo.finance.domain.usuario.UsuarioEntity;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,9 +29,9 @@ import java.math.BigDecimal;
 @AttributeOverride(name = "id", column = @Column(name = "id_conta"))
 @Getter
 @Setter
+@Builder
 public class ContaEntity extends BaseEntity {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nr_conta", nullable = false)
     private Long numero;
 
@@ -43,4 +45,8 @@ public class ContaEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "banco_id_banco", nullable = false)
     private BancoEntity banco;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
+    private UsuarioEntity usuario;
 }

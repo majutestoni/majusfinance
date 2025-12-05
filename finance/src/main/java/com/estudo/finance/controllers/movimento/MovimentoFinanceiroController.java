@@ -1,5 +1,6 @@
 package com.estudo.finance.controllers.movimento;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,13 +15,10 @@ import jakarta.validation.Valid;
 /**
  */
 @RestController(value = "/movimento")
+@AllArgsConstructor
 public class MovimentoFinanceiroController {
 
 	private final EntradaService entradaService;
-
-	public MovimentoFinanceiroController(EntradaService entradaService) {
-		this.entradaService = entradaService;
-	}
 
 	@PostMapping("/deposito")
 	public ResponseEntity<EntradaEntity> deposito(@RequestBody @Valid EntradaDTO dto) {

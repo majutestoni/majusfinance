@@ -4,10 +4,12 @@ import com.estudo.finance.domain.BaseEntity;
 import com.estudo.finance.domain.categoria.CategoriaMovimentoEntity;
 import com.estudo.finance.domain.categoria.SubCategoriaMovimentoEntity;
 import com.estudo.finance.domain.conta.ContaEntity;
+import com.estudo.finance.domain.usuario.UsuarioEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -17,6 +19,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @SuperBuilder
+@NoArgsConstructor
 public abstract class DinheiroMovimentoEntity extends BaseEntity {
 
     @Column(name = "nr_valor", nullable = false, precision = 19, scale = 2)
@@ -39,5 +42,9 @@ public abstract class DinheiroMovimentoEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "conta_id_conta", nullable = false)
     private ContaEntity conta;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
+    private UsuarioEntity usuario;
 
 }
