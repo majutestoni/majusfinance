@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * Implementção de {@link DinheiroMovimentoService}
@@ -22,5 +23,13 @@ public abstract class DinheiroMovimentoServiceImpl implements DinheiroMovimentoS
 	protected CategoriaRepository categoriaRepository;
 	protected SubCategoriaRepository subCategoriaRepository;
     protected BancoRepository bancoRepository;
+
+    protected LocalDateTime buildDate(LocalDateTime dateDTO) {
+        if (dateDTO == null) {
+            return LocalDateTime.now();
+        }
+
+        return dateDTO;
+    }
 
 }

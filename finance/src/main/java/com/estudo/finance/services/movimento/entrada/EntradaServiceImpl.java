@@ -33,6 +33,7 @@ public class EntradaServiceImpl
 	private EntradaEntity getEntity(EntradaDTO dto) {
 		EntradaEntity entity = dto.toEntity();
 
+        entity.setData(buildDate(dto.data()));
         setDadosById(entity, dto);
 
 		entity = entradaRepository.save(entity);
