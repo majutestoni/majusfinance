@@ -78,4 +78,20 @@ public abstract class DinheiroMovimentoDTO {
 	public void setCodigoBanco(Long codigoBanco) {
 		this.codigoBanco = codigoBanco;
 	}
+
+	public Long getCodigoCategoria() {
+		return codigoCategoria;
+	}
+
+	public void setCodigoCategoria(Long codigoCategoria) {
+		this.codigoCategoria = codigoCategoria;
+	}
+
+	public Long getCodigoSubCategoria() {
+		return codigoSubCategoria;
+	}
+
+	public void setCodigoSubCategoria(Long codigoSubCategoria) {
+		this.codigoSubCategoria = codigoSubCategoria;
+	}
 }

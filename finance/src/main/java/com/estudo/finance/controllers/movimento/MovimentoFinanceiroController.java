@@ -25,7 +25,6 @@ public class MovimentoFinanceiroController {
 	@PostMapping("/deposito")
 	public ResponseEntity<EntradaEntity> deposito(@RequestBody @Valid EntradaDTO dto) {
 		EntradaEntity entity = entradaService.deposito(dto);
-
 		return ResponseEntity.ok(entity);
 	}
 }

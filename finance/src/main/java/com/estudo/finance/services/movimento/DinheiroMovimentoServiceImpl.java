@@ -3,6 +3,7 @@ package com.estudo.finance.services.movimento;
 import java.util.Optional;
 
 import com.estudo.finance.configuration.exceptions.RequisicaoInvalidaException;
+import com.estudo.finance.domain.categoria.CategoriaMovimentoEntity;
 import com.estudo.finance.domain.conta.ContaEntity;
 import com.estudo.finance.dtos.movimento.DinheiroMovimentoDTO;
 import com.estudo.finance.repositories.categoria.CategoriaRepository;
@@ -42,6 +43,15 @@ public abstract class DinheiroMovimentoServiceImpl<T extends DinheiroMovimentoDT
 					));
 		}
 			throw new RequisicaoInvalidaException("Nenhuma informação foi informada");
+	}
 
+	protected CategoriaMovimentoEntity getCategoria(Long codigoCategoria) {
+		if (codigoCategoria == null) {
+			throw new RequisicaoInvalidaException("Nenhum código de categoria foi informado!");
+		}
+
+		return categoriaRepository.findByCodigo(codigoCategoria).orElseThrow(() ->  new RequisicaoInvalidaException(
+				"Categoria com código " + codigoCategoria + " não foi encontrada."
+		));
 	}
 }

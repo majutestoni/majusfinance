@@ -1,5 +1,7 @@
 package com.estudo.finance.services.movimento.saida;
 
+import com.estudo.finance.domain.movimento.saida.SaidaEntity;
+import com.estudo.finance.dtos.movimento.saida.SaidaDTO;
 import com.estudo.finance.services.movimento.DinheiroMovimentoService;
 
 /**
@@ -8,4 +10,6 @@ import com.estudo.finance.services.movimento.DinheiroMovimentoService;
  * @author Majú Testoni
  */
 public interface SaidaService extends DinheiroMovimentoService {
+
+	SaidaEntity despesa(SaidaDTO dto);
 }
