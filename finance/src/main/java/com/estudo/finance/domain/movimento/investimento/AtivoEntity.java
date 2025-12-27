@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -18,6 +20,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "ativos")
 @AttributeOverride(name = "id", column = @Column(name = "id_ativo"))
+@Getter
+@Setter
 public class AtivoEntity extends BaseEntity {
 
     @Column(name = "ds_codigo", nullable = false, unique = true)

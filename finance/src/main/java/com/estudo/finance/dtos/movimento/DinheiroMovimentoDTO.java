@@ -23,10 +23,6 @@ public abstract class DinheiroMovimentoDTO {
 
 	private Long idConta;
 
-	private Long numeroConta;
-
-	private Long codigoBanco;
-
 	private Long codigoCategoria;
 
 	private Long codigoSubCategoria;

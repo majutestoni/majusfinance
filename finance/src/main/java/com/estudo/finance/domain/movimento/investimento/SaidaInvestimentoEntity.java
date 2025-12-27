@@ -5,6 +5,8 @@ import com.estudo.finance.domain.movimento.DinheiroMovimentoEntity;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +18,7 @@ import lombok.Setter;
 @Setter
 public class SaidaInvestimentoEntity extends DinheiroMovimentoEntity {
 
+    @ManyToOne
+    @JoinColumn(name = "ativo_id_ativo", nullable = false)
     private AtivoEntity ativo;
 }

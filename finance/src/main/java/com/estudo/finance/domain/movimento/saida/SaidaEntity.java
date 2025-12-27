@@ -10,12 +10,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "saidas")
 @AttributeOverride(name = "id", column = @Column(name = "id_saida"))
 @Getter
 @Setter
+@SuperBuilder
 public class SaidaEntity extends DinheiroMovimentoEntity {
 
     @Column(name = "tp_meio_saida", nullable = false)
